@@ -30,7 +30,11 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import random
 
-## Loading Dataset
+import boto3
+
+s3_client = boto3.resource('s3')    
+KEY = "tapo1992/saved_model/pytorch_model.bin"
+s3_client.Bucket("tb-lumen").download_file(KEY, '/home/ubuntu/Bert-Tranformers/Pytorch Model Bert/pytorch_model.bin')## Loading Dataset
 print("_______________________________________________________________")
 print("Loading Data...........")
 cols = ["sentiment", "id", "date", "query", "user", "text"]
