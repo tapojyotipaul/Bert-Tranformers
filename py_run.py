@@ -32,9 +32,11 @@ import random
 
 import boto3
 
-s3_client = boto3.resource('s3')    
-KEY = "tapo1992/saved_model/pytorch_model.bin"
-s3_client.Bucket("tb-lumen").download_file(KEY, '/home/ubuntu/Bert-Tranformers/Pytorch Model Bert/pytorch_model.bin')## Loading Dataset
+# s3_client = boto3.resource('s3')
+# print("Loading Data from s3")    
+# KEY = "tapo1992/saved_model/pytorch_model.bin"
+# s3_client.Bucket("tb-lumen").download_file(KEY, '/home/ubuntu/Bert-Tranformers/Pytorch Model Bert/pytorch_model.bin')## Loading Dataset
+
 print("_______________________________________________________________")
 print("Loading Data...........")
 cols = ["sentiment", "id", "date", "query", "user", "text"]
@@ -74,7 +76,7 @@ from transformers import get_linear_schedule_with_warmup
 from transformers import BertTokenizer
 from torch.utils.data import TensorDataset, random_split
 
-output_dir = r'C:\Users\tapojyoti.paul\Documents\Intel\BERT\Pytorch Model Bert'
+output_dir = r'Pytorch Model Bert'
 # Load a trained model and vocabulary that you have fine-tuned
 model = BertForSequenceClassification.from_pretrained(output_dir)
 tokenizer = BertTokenizer.from_pretrained(output_dir)
