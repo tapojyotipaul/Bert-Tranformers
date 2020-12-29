@@ -3,10 +3,11 @@
 # Activate environment and install packages
 conda init bash
 
-conda install -c conda-forge -y torch
-## conda install -c conda-forge -y tensorflow-gpu
-pip install tensorflow_hub
-pip install bert-for-tf2
-git clone https://github.com/tapojyotipaul/Bert-Inferencing
-cd Bert-Inferencing
-python3 Bert_Inferencing.py
+pip install -y torch
+pip install -y transformers
+git clone https://github.com/tapojyotipaul/Bert-Tranformers
+cd Bert-Tranformers
+cd 'Pytorch Model Bert'
+wget https://tapo1992.s3.us-east-2.amazonaws.com/saved_model/pytorch_model.bin
+cd Bert-Tranformers
+python3 py_run.py
