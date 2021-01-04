@@ -32,11 +32,9 @@ import random
 
 import boto3
 
-# s3_client = boto3.resource('s3')
-# print("Loading Data from s3")    
-# KEY = "tapo1992/saved_model/pytorch_model.bin"
-# s3_client.Bucket("tb-lumen").download_file(KEY, '/home/ubuntu/Bert-Tranformers/Pytorch Model Bert/pytorch_model.bin')## Loading Dataset
-
+#s3_client = boto3.resource('s3')    
+#KEY = "tapo1992/saved_model/pytorch_model.bin"
+#s3_client.Bucket("tb-lumen").download_file(KEY, '/home/ubuntu/Bert-Tranformers/Pytorch Model Bert/pytorch_model.bin')## Loading Dataset
 print("_______________________________________________________________")
 print("Loading Data...........")
 cols = ["sentiment", "id", "date", "query", "user", "text"]
@@ -220,7 +218,7 @@ if __name__=='__main__':
     ob_ct = 1  # Start with a single observation
     logging.info(STATS)
     temp_df = pd.DataFrame()
-    while ob_ct <= 100:
+    while ob_ct <= 10000:
         temp = run_inference(ob_ct)
         temp["No_of_Observation"] = ob_ct
         temp_df = temp_df.append(temp)
