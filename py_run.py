@@ -174,7 +174,7 @@ def run_inference(num_observations:int = 1000):
 #######################################################################################################################
             outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask)
             logits = outputs[0]
-            logit_list.append(logits)
+            # logit_list.append(logits)
         end_time = timer()
 #######################################################################################################################
 
@@ -193,7 +193,7 @@ def run_inference(num_observations:int = 1000):
         prep_inf_times.append(prep_inf_time)
         inference_times.append(inference_time)
         
-    print("length of predicted df", len(logit_list))
+    print("length of predicted df", num_rows)
     
     df1 = calculate_stats(bert_times)
     df1["Flag"] = "Only Bert"
