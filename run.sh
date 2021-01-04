@@ -3,8 +3,8 @@
 # Activate environment and install packages
 conda init bash
 
-pip install -y torch
-pip install -y transformers
+pip install torch
+pip install transformers
 git clone https://github.com/tapojyotipaul/Bert-Tranformers
 cd Bert-Tranformers
 cd 'Pytorch Model Bert'

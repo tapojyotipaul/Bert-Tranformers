@@ -157,13 +157,14 @@ def run_inference(num_observations:int = 1000):
         # Convert the lists into tensors.
         input_ids = torch.cat(input_ids, dim=0)
         attention_masks = torch.cat(attention_masks, dim=0)
-        batch_size = 32  
+        batch_size = 100  
         # Create the DataLoader.
         prediction_data = TensorDataset(input_ids, attention_masks,)
-        prediction_dataloader = DataLoader(prediction_data,batch_size=num_rows)
+        prediction_dataloader = DataLoader(prediction_data,batch_size=batch_size)
         
         end_tm_bert = timer()
-        
+        start_time = timer()
+        logit_list = []
         for batch in prediction_dataloader:
             b_input_ids = batch[0].to(device)
             b_input_mask = batch[1].to(device)
@@ -171,9 +172,9 @@ def run_inference(num_observations:int = 1000):
 #             print(len(b_input_ids))
 #             print("/////////////")
 #######################################################################################################################
-        start_time = timer()
-        outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask)
-        logits = outputs[0]
+            outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask)
+            logits = outputs[0]
+            logit_list.append(logits)
         end_time = timer()
 #######################################################################################################################
 
@@ -192,7 +193,7 @@ def run_inference(num_observations:int = 1000):
         prep_inf_times.append(prep_inf_time)
         inference_times.append(inference_time)
         
-    print("length of predicted df", len(logits))
+    print("length of predicted df", len(logit_list))
     
     df1 = calculate_stats(bert_times)
     df1["Flag"] = "Only Bert"
